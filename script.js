@@ -1,34 +1,27 @@
-const formTitle = document.getElementById('formTitle');
-const authForm = document.getElementById('authForm');
-const toggleLink = document.getElementById('toggleLink');
-const emailInput = document.getElementById('email');
-let isLogin = true;
+function showForm(formType) {
+    const signupForm = document.getElementById('signupForm');
+    const loginForm = document.getElementById('loginForm');
+    const tabs = document.querySelectorAll('.tab');
 
-toggleLink.addEventListener('click', (e) => {
-    e.preventDefault();
-    isLogin = !isLogin;
-    if (isLogin) {
-        formTitle.textContent = 'Login';
-        toggleLink.textContent = "Don't have an account? Sign up";
-        emailInput.style.display = 'none';
+    if (formType === 'signup') {
+        signupForm.style.display = 'block';
+        loginForm.style.display = 'none';
+        tabs[0].classList.add('active');
+        tabs[1].classList.remove('active');
     } else {
-        formTitle.textContent = 'Sign Up';
-        toggleLink.textContent = 'Already have an account? Login';
-        emailInput.style.display = 'block';
+        signupForm.style.display = 'none';
+        loginForm.style.display = 'block';
+        tabs[0].classList.remove('active');
+        tabs[1].classList.add('active');
     }
+}
+
+document.getElementById('signupForm').addEventListener('submit', function (e) {
+    e.preventDefault();
+    alert('Sign up form submitted!');
 });
 
-authForm.addEventListener('submit', (e) => {
+document.getElementById('loginForm').addEventListener('submit', function (e) {
     e.preventDefault();
-    const username = document.getElementById('username').value;
-    const password = document.getElementById('password').value;
-    const email = document.getElementById('email').value;
-
-    if (isLogin) {
-        console.log('Login attempt:', { username, password });
-        alert('Login functionality would be implemented here');
-    } else {
-        console.log('Signup attempt:', { username, email, password });
-        alert('Signup functionality would be implemented here');
-    }
+    alert('Login form submitted!');
 });
